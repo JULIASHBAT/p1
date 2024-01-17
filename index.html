@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <title>Web Technology - Lab 1</title>
+    <link href="inc/Stylesheet.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f6f7f8;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #myDiv {
+            border: 5px solid rgb(6, 8, 8);
+            background-color: rgb(106, 212, 231);
+            text-align: center;
+            padding: 10px;
+        }
+
+        button {
+            width: 40px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="myDiv">
+        <input type="text" id="display" readonly style="width: 150px; padding: 8px; margin-top: 5px;">
+        <div style="clear:both"></div>
+        <div style="float: left"><button onclick="addToInput('1')">1</button></div>
+        <div style="float: left"><button onclick="addToInput('2')">2</button></div>
+        <div style="float: left"><button onclick="addToInput('3')">3</button></div>
+        <div style="float: left"><button onclick="addToInput('+')">+</button></div>
+        <div style="clear:both"></div>
+        <div style="float: left"><button onclick="addToInput('4')">4</button></div>
+        <div style="float: left"><button onclick="addToInput('5')">5</button></div>
+        <div style="float: left"><button onclick="addToInput('6')">6</button></div>
+        <div style="float: left"><button onclick="addToInput('-')">-</button></div>
+        <div style="clear:both"></div>
+        <div style="float: left"><button onclick="addToInput('7')">7</button></div>
+        <div style="float: left"><button onclick="addToInput('8')">8</button></div>
+        <div style="float: left"><button onclick="addToInput('9')">9</button></div>
+        <div style="float: left"><button onclick="addToInput('*')">*</button></div>
+        <div style="clear:both"></div>
+        <div style="float: left"><button onclick="addToInput('0')">0</button></div> 
+        <div style="float: left"><button onclick="addToInput('.')">.</button></div>
+        <div style="float: left"><button onclick="calculate()">=</button></div>
+        <div style="float: left"><button onclick="addToInput('/')">/</button></div>
+        <div style="clear:both"></div>
+        <div style="float: left"><button onclick="clearInput()">C</button></div>
+        <div style="clear:both"></div>
+    </div>
+
+    <script>
+        // display the what is on the buttom on the screen of the calculater
+        function addToInput(value) {
+            document.getElementById('display').value += value;
+        }
+        // clear input which is on the screen
+        function clearInput() {
+            document.getElementById('display').value = '';
+        }
+        //calc the result
+        function calculate() {
+            try {
+                // Evaluate the mathematical expression
+                var result = eval(document.getElementById('display').value);
+                // Display the result
+                document.getElementById('display').value = result;
+            } catch (error) {
+                // Handle any errors that may occur during evaluation
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+
+   <script>
+    // custom config for the MTW app 
+    const mtwAppConfig = {
+        border: true // app border in the MTW page                    
+    }
+
+    ///////////////////////////////////////////////////////
+    // implement this functions in order to use private API        
+    const sendPrivateApiRequest = async () => {
+        // your code here:
+        // sendRequestToParent({ cat: 'getAssets' })
+    }        
+
+    const acceptPrivateApiResponse = async (data) => {
+        // process received data here:
+        // console.log(data)
+    }
+
+    // use this in order to send on document load
+    document.addEventListener('DOMContentLoaded', () => {
+        // your code here:
+        //sendRequestToParent({ method: 'getAssets' })
+    })
+
+</script>
+<script src="https://morethanwallet.com/appstore/index.js"></script>
+</body>
+</html>
+
+
