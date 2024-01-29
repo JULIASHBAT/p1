@@ -5,80 +5,127 @@
     <link href="inc/Stylesheet.css" rel="stylesheet" />
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f6f7f8;
-            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
+            margin: 0;
         }
 
-        #myDiv {
-            border: 5px solid rgb(6, 8, 8);
-            background-color: rgb(106, 212, 231);
-            text-align: center;
-            padding: 10px;
+        #calculator {
+            border-radius: 10px;
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            margin-inline-start: auto;
+            margin-inline-end: auto;
+            margin-block-start: 2em;
+            max-inline-size: 26rem;
+            overflow: hidden;
+        }
+
+        input[type="text"] {
+            background-color: #f5f5f5;
+            font-size: 4.2rem;
+            padding-block-start: 3rem;
+            padding-block-end: 0.5rem;
+            padding-inline-end: 1.25rem;
+            text-align: end;
         }
 
         button {
-            width: 40px;
-            padding: 10px;
-            margin: 10px;
+            background: hsl(212, 24%, 75%);
+            border: none;
+            padding-block-start: 1rem;
+            padding-block-end: 1rem;
+            padding-inline-end: 1.25rem;
+            padding-inline-start: 1.25rem;
+            font-size: 1.5rem;
+            /* Playful Styles */
+            inline-size: 70px;
+            block-size: 70px;
+            margin: 0.25rem;
+            border-radius: 40px;
         }
+
+        .button:active,
+        .button:focus {
+            box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3) inset;
+            outline: none;
+        }
+
+        .button--operator {
+            background: hsl(208, 51%, 84%);
+        }
+        .button--operator:active {
+            background: hsl(208, 51%, 84%);
+        }
+
     </style>
 </head>
 <body>
-    <div id="myDiv">
-        <input type="text" id="display" readonly style="width: 150px; padding: 8px; margin-top: 5px;">
-        <div style="clear:both"></div>
-        <div style="float: left"><button onclick="addToInput('1')">1</button></div>
-        <div style="float: left"><button onclick="addToInput('2')">2</button></div>
-        <div style="float: left"><button onclick="addToInput('3')">3</button></div>
-        <div style="float: left"><button onclick="addToInput('+')">+</button></div>
-        <div style="clear:both"></div>
-        <div style="float: left"><button onclick="addToInput('4')">4</button></div>
-        <div style="float: left"><button onclick="addToInput('5')">5</button></div>
-        <div style="float: left"><button onclick="addToInput('6')">6</button></div>
-        <div style="float: left"><button onclick="addToInput('-')">-</button></div>
-        <div style="clear:both"></div>
-        <div style="float: left"><button onclick="addToInput('7')">7</button></div>
-        <div style="float: left"><button onclick="addToInput('8')">8</button></div>
-        <div style="float: left"><button onclick="addToInput('9')">9</button></div>
-        <div style="float: left"><button onclick="addToInput('*')">*</button></div>
-        <div style="clear:both"></div>
-        <div style="float: left"><button onclick="addToInput('0')">0</button></div> 
-        <div style="float: left"><button onclick="addToInput('.')">.</button></div>
-        <div style="float: left"><button onclick="calculate()">=</button></div>
-        <div style="float: left"><button onclick="addToInput('/')">/</button></div>
-        <div style="clear:both"></div>
-        <div style="float: left"><button onclick="clearInput()">C</button></div>
-        <div style="clear:both"></div>
+    <div id="calculator">
+        <input type="text" id="display" disabled>
+        <br>
+        <button onclick="appendValue('π')" class="button--operator">π</button>
+        <button onclick="appendValue('(')" class="button--operator">(</button>
+        <button onclick="appendValue(')')" class="button--operator">)</button>
+        <button onclick="appendValue('%')" class="button--operator">%</button>
+        <button onclick="backspace()" class="button--operator"><-</button>
+        <br>
+        <button onclick="appendFunction('Math.exp')" class="button--operator">exp</button>
+        <button onclick="appendFunction('Math.log')" class="button--operator">log</button>
+        <button onclick="appendFunction('Math.sqrt')" class="button--operator">√</button>
+        <button onclick="clearDisplay()" class="button--operator">C</button>
+        <button onclick="calculate()">=</button>
+        <br>
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button onclick="appendValue('/')">/</button>
+        <br>
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="appendValue('*')">*</button>
+        <br>
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button onclick="appendValue('-')">-</button>
+        <br>
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button onclick="appendValue('**')">^</button>
+        <button onclick="appendValue('+')">+</button>
     </div>
 
     <script>
-        // display the what is on the buttom on the screen of the calculater
-        function addToInput(value) {
+        function appendValue(value) {
             document.getElementById('display').value += value;
         }
-        // clear input which is on the screen
-        function clearInput() {
+
+        function appendFunction(func) {
+            document.getElementById('display').value += func + '(';
+        }
+
+        function clearDisplay() {
             document.getElementById('display').value = '';
         }
-        //calc the result
+
         function calculate() {
             try {
-                // Evaluate the mathematical expression
-                var result = eval(document.getElementById('display').value);
-                // Display the result
-                document.getElementById('display').value = result;
+                document.getElementById('display').value = eval(document.getElementById('display').value);
             } catch (error) {
-                // Handle any errors that may occur during evaluation
                 document.getElementById('display').value = 'Error';
             }
         }
-    </script>
 
+        function backspace() {
+            var currentValue = document.getElementById('display').value;
+            document.getElementById('display').value = currentValue.substring(0, currentValue.length - 1);
+        }
+    </script>
    <script>
     // custom config for the MTW app 
     const mtwAppConfig = {
