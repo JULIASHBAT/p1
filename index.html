@@ -3,66 +3,9 @@
 <head>
     <title>Web Technology - Lab 1</title>
     <link href="inc/Stylesheet.css" rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
 
-        #calculator {
-            border-radius: 10px;
-            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-            margin-inline-start: auto;
-            margin-inline-end: auto;
-            margin-block-start: 2em;
-            max-inline-size: 26rem;
-            overflow: hidden;
-            color: hsl(202, 11%, 29%);
-        }
-
-        input[type="text"] {
-            background: hsl(255, 100%, 100%);
-            font-size: 2.1rem;
-            padding-block-start: 3rem;
-            padding-block-end: 0.5rem;
-            padding-inline-end: 15rem;
-            text-align: end;
-        }
-
-        button {
-            background: hsl(212, 24%, 75%);
-            border: none;
-            padding-block-start: 1rem;
-            padding-block-end: 1rem;
-            padding-inline-end: 1.25rem;
-            padding-inline-start: 1.25rem;
-            font-size: 1.5rem;
-            /* Playful Styles */
-            inline-size: 70px;
-            block-size: 70px;
-            margin: 0.25rem;
-            border-radius: 40px;
-        }
-
-        .button:active,
-        .button:focus {
-            box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3) inset;
-            outline: none;
-        }
-
-        .button--operator {
-            background: hsl(208, 51%, 84%);
-        }
-        .button--operator:active {
-            background: hsl(208, 51%, 84%);
-        }
-
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="calculator">
@@ -80,53 +23,28 @@
         <button onclick="clearDisplay()" class="button--operator">C</button>
         <button onclick="calculate()">=</button>
         <br>
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
-        <button onclick="appendValue('/')">/</button>
+        <button onclick="appendValue('7')" class="button">7</button>
+        <button onclick="appendValue('8')" class="button">8</button>
+        <button onclick="appendValue('9')"class="button">9</button>
+        <button onclick="appendValue('/')" class="button">/</button>
         <br>
-        <button onclick="appendValue('4')">4</button>
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
-        <button onclick="appendValue('*')">*</button>
+        <button onclick="appendValue('4')" class="button">4</button>
+        <button onclick="appendValue('5')" class="button">5</button>
+        <button onclick="appendValue('6')" class="button">6</button>
+        <button onclick="appendValue('*')" class="button">*</button>
         <br>
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
-        <button onclick="appendValue('-')">-</button>
+        <button onclick="appendValue('1')" class="button">1</button>
+        <button onclick="appendValue('2')" class="button">2</button>
+        <button onclick="appendValue('3')" class="button">3</button>
+        <button onclick="appendValue('-')" class="button">-</button>
         <br>
-        <button onclick="appendValue('0')">0</button>
-        <button onclick="appendValue('.')">.</button>
-        <button onclick="appendValue('**')">^</button>
-        <button onclick="appendValue('+')">+</button>
+        <button onclick="appendValue('0')" class="button">0</button>
+        <button onclick="appendValue('.')" class="button">.</button>
+        <button onclick="appendValue('**')" class="button">^</button>
+        <button onclick="appendValue('+')" class="button">+</button>
     </div>
 
-    <script>
-        function appendValue(value) {
-            document.getElementById('display').value += value;
-        }
-
-        function appendFunction(func) {
-            document.getElementById('display').value += func + '(';
-        }
-
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-
-        function calculate() {
-            try {
-                document.getElementById('display').value = eval(document.getElementById('display').value);
-            } catch (error) {
-                document.getElementById('display').value = 'Error';
-            }
-        }
-
-        function backspace() {
-            var currentValue = document.getElementById('display').value;
-            document.getElementById('display').value = currentValue.substring(0, currentValue.length - 1);
-        }
-    </script>
+   <script src="script.js"></script>
    <script>
     // custom config for the MTW app 
     const mtwAppConfig = {
